@@ -1,5 +1,6 @@
 import './weather.css';
 import * as icons from "weather-icons-react";
+import {useRef} from 'react';
 
 //const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const monthList = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -87,14 +88,21 @@ function Weather(props) {
     if (condition === 'sky unchanged') {
         weatherIcon = <icons.WiCloudRefresh size={imgSize} color={imgColor} />
     }
+    const myRef = useRef(null);
 
     const handleOnClick = () => {
         props.handleSetToggledItem(props.index);
+        myRef.current.scrollIntoView({'behavior': 'smooth', "inline": "start"});
     }
     
+    if (props.toggleItem === props.index) {
+        var focused = 'focused card';
+    } else {
+        var focused = 'card'
+    }
 
     return (
-        <div className='card' onClick={handleOnClick}>
+        <div ref={myRef} className={focused} onClick={handleOnClick}>
             {weatherIcon}
             <h2>{date}</h2>
             <h3>{month}</h3>

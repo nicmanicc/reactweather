@@ -13,7 +13,7 @@ const {REACT_APP_OWM_KEY} = process.env;
 function App() {
   const [inputClass, setInputClass] = useState('searchCountry')
   const [weatherData, setWeatherData] = useState([])
-  const [toggledItem, setToggledItem] = useState(-1);
+  const [toggledItem, setToggledItem] = useState(0);
 
   const handleSetLocation = (e) => {
     e.preventDefault()
@@ -50,11 +50,13 @@ function App() {
         <div className='flexContainer'>
           {
             weatherData.length > 0 && (weatherData.map((weather, index) => {
+              console.log(weather)
               return (
                 
                   <Weather
                     key={index}
                     index={index}
+                    toggleItem={toggledItem}
                     conditions={weather.conditions}
                     dateTime={weather.datetime}
                     temp={weather.temp}

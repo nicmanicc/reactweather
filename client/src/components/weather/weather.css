@@ -9,6 +9,9 @@
     text-align: center;
     margin: 1px;
 }
+.focused {
+    border: 1px dashed black;
+}
 .temp {
     font-size: large;
 }
