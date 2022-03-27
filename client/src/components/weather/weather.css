@@ -1,0 +1,18 @@
+.card {
+    display: inline-block;
+    width: 10%;
+    height: 30%;
+    padding: 2rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: black;
+    text-align: center;
+    margin: 1px;
+}
+.temp {
+    font-size: large;
+}
+.tempMin, .tempMax {
+    display: inline-block;
+    margin: 0 1rem;
+}

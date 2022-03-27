@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 
 import Weather from './components/weather/weather';
+import WeatherInfo from './components/weather/weatherInfo';
 
 import axios from 'axios';
 
@@ -12,14 +13,16 @@ const {REACT_APP_OWM_KEY} = process.env;
 function App() {
   const [inputClass, setInputClass] = useState('searchCountry')
   const [weatherData, setWeatherData] = useState([])
+  const [toggledItem, setToggledItem] = useState(-1);
 
   const handleSetLocation = (e) => {
     e.preventDefault()
     
     setInputClass('searchCountry moveSearchCountry') //create animation on form submit
-    axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${e.target.country.value}/next6days?unitGroup=metric&key=${REACT_APP_OWM_KEY}&contentType=json`)
+    axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${e.target.country.value}?unitGroup=metric&key=${REACT_APP_OWM_KEY}&contentType=json`)
       .then(res => {
         const data = res.data;
+        console.log(data.days)
         setWeatherData(data.days)
       }).catch((error) => {
         // Error
@@ -38,20 +41,38 @@ function App() {
         }})
   }
 
+  const handleSetToggledItem = (index) => {
+    setToggledItem(index);
+  }
+
   return (
     <div>
-        {weatherData.length > 0 && (weatherData.map((weather) => {
-          console.log(weather)
-          return (<Weather
-            key={weather.datetime}
-            conditions={weather.conditions}
-            dateTime={weather.datetime}
-            temp={weather.temp}
-            tempMax={weather.tempMax}
-            tempMin={weather.tempMin}
-            /> )
-        }))
-        }
+        <div className='flexContainer'>
+          {
+            weatherData.length > 0 && (weatherData.map((weather, index) => {
+              return (
+                
+                  <Weather
+                    key={index}
+                    index={index}
+                    conditions={weather.conditions}
+                    dateTime={weather.datetime}
+                    temp={weather.temp}
+                    tempMax={weather.tempmax}
+                    tempMin={weather.tempmin}
+                    handleSetToggledItem={handleSetToggledItem}
+                    />
+                )
+            }))
+          }
+          
+          
+        
+        </div>
+        {weatherData.length > 0 && <WeatherInfo/>}
+        
+      
+        
         <form onSubmit={handleSetLocation}>
           <input id='countryInput' name='country' type='text' className={inputClass} placeholder='Enter city name'/>
         </form>
