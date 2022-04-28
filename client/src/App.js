@@ -44,15 +44,14 @@ function App() {
   const handleSetToggledItem = (index) => {
     setToggledItem(index);
   }
-
+  console.log(weatherData);
   return (
     <div>
         <div className='flexContainer'>
           {
             weatherData.length > 0 && (weatherData.map((weather, index) => {
-              console.log(weather)
+              
               return (
-                
                   <Weather
                     key={index}
                     index={index}
@@ -71,7 +70,7 @@ function App() {
           
         
         </div>
-        {weatherData.length > 0 && <WeatherInfo/>}
+        {weatherData.length > 0 && <WeatherInfo hours={weatherData[toggledItem].hours}/>}
         
       
         
