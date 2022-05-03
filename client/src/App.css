@@ -11,18 +11,22 @@ html, body {
     margin-right: -50%;
     transform: translate(-50%, -50%);
     width: 40%;
+    height: 5%;
+    animation-fill-mode: forwards;
+}
+.locationInput {
+    width: 100%;
     height: 1.5rem;
     border: 1px solid rgba(0,0,0,0.1);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #151618;
     color: white;
     outline-width: 0px;
     padding: 3px;
     padding-left: 10px;
     font-size: 1rem;
-    animation-fill-mode: forwards;
 }
 .moveOnSubmit {
-    top: 5%;
+    top: 5.5%;
     animation: fade 1s ease;
     animation-fill-mode: forwards;
    
@@ -63,19 +67,19 @@ html, body {
         top: 60%
     }
     to {
-        top: 5%
+        top: 5.5%
     }
   }
 
-  @keyframes fadeLogo {
-    from {
-        top: 35%;
-        left: 50%;
-        width: 30%;
-    }
-    to {
-        top: 4.5%;
-        left: 27%;
-        width: 4%;
-    }
-  }
+@keyframes fadeLogo {
+from {
+    top: 35%;
+    left: 50%;
+    width: 30%;
+}
+to {
+    top: 4.5%;
+    left: 27%;
+    width: 4%;
+}
+}

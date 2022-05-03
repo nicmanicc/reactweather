@@ -13,6 +13,7 @@ const {REACT_APP_OWM_KEY} = process.env;
 function App() {
   const [inputClass, setInputClass] = useState('searchCountry')
   const [logoClass, setLogoClass] = useState('mainLogo')
+  const [error, setError] = useState(false);
   const [weatherData, setWeatherData] = useState([])
   const [toggledItem, setToggledItem] = useState(0);
 
@@ -26,6 +27,7 @@ function App() {
         setWeatherData(data.days)
         setInputClass('searchCountry moveOnSubmit') //Apply animation to move search bar to top of page
         setLogoClass('mainLogo miniLogo') //Apply animation to move logo to top of page
+        setError(false) //Remove error (if present) 
       }).catch((error) => {
         // Error
         if (error.response) {
@@ -34,6 +36,7 @@ function App() {
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.headers);
+            setError(true) //Show input error
         } else if (error.request) {
             //no response from server
             console.log(error.request);
@@ -78,7 +81,10 @@ function App() {
       
         <img className={logoClass} src={Logo} alt='React Weather'/>
         <form onSubmit={handleSetLocation}>
-          <input id='countryInput' name='country' type='text' className={inputClass} autoFocus autoComplete='off'/>
+          <div className={inputClass}>
+            <input id='countryInput' name='country' type='text' className='locationInput' autoFocus autoComplete='off'/>
+            {error && <p style={{color: 'red'}}>*Please enter a valid location</p>}
+          </div>
         </form>
     </div>
   );

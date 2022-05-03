@@ -13,7 +13,7 @@ function Weather(props) {
         animationName: 'fadeInOpacity',
         animationDelay: props.delay,
         animationDuration: '1s',
-        animationFillMode: 'forwards',
+        animationFillMode: 'forwards'
     }
 
     const myRef = useRef(null);
