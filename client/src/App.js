@@ -3,7 +3,7 @@ import './App.css';
 
 import Weather from './components/weather/weather';
 import WeatherInfo from './components/weather/weatherInfo';
-
+import Logo from './assets/ReactWeatherIcon.png';
 import axios from 'axios';
 
 
@@ -12,18 +12,20 @@ const {REACT_APP_OWM_KEY} = process.env;
 
 function App() {
   const [inputClass, setInputClass] = useState('searchCountry')
+  const [logoClass, setLogoClass] = useState('mainLogo')
   const [weatherData, setWeatherData] = useState([])
   const [toggledItem, setToggledItem] = useState(0);
 
   const handleSetLocation = (e) => {
     e.preventDefault()
     
-    setInputClass('searchCountry moveSearchCountry') //create animation on form submit
     axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${e.target.country.value}?unitGroup=metric&key=${REACT_APP_OWM_KEY}&contentType=json`)
       .then(res => {
         const data = res.data;
         console.log(data.days)
         setWeatherData(data.days)
+        setInputClass('searchCountry moveOnSubmit') //Apply animation to move search bar to top of page
+        setLogoClass('mainLogo miniLogo') //Apply animation to move logo to top of page
       }).catch((error) => {
         // Error
         if (error.response) {
@@ -44,13 +46,13 @@ function App() {
   const handleSetToggledItem = (index) => {
     setToggledItem(index);
   }
-  console.log(weatherData);
+
+
   return (
     <div>
         <div className='flexContainer'>
           {
             weatherData.length > 0 && (weatherData.map((weather, index) => {
-              
               return (
                   <Weather
                     key={index}
@@ -62,6 +64,7 @@ function App() {
                     tempMax={weather.tempmax}
                     tempMin={weather.tempmin}
                     handleSetToggledItem={handleSetToggledItem}
+                    delay={`${index / 6}s`}
                     />
                 )
             }))
@@ -73,9 +76,9 @@ function App() {
         {weatherData.length > 0 && <WeatherInfo hours={weatherData[toggledItem].hours}/>}
         
       
-        
+        <img className={logoClass} src={Logo} alt='React Weather'/>
         <form onSubmit={handleSetLocation}>
-          <input id='countryInput' name='country' type='text' className={inputClass} placeholder='Enter city name'/>
+          <input id='countryInput' name='country' type='text' className={inputClass} autoFocus autoComplete='off'/>
         </form>
     </div>
   );

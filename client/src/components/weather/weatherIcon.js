@@ -20,7 +20,7 @@ function WeatherIcon(props) {
     var str = props.conditions.split(', ')
     var condition = str[0].toLowerCase();
     const imgSize = props.imgSize;
-    const imgColor = props.imgColor
+    const imgColor = 'white'; //props.imgColor
     if (sunnyConditions.includes(condition)) {
         return <icons.WiDaySunny size={imgSize} color={imgColor} />;
     }

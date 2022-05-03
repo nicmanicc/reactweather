@@ -1,9 +1,12 @@
 html, body {
     overflow: auto;
+    background-color: #1c1e21;
+    color: white;
+    font-family: Arial, sans-serif;
 }
 .searchCountry {
     position: absolute;
-    top: 5%;
+    top: 60%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -11,13 +14,18 @@ html, body {
     height: 1.5rem;
     border: 1px solid rgba(0,0,0,0.1);
     background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
     color: white;
     outline-width: 0px;
     padding: 3px;
     padding-left: 10px;
     font-size: 1rem;
-    
+    animation-fill-mode: forwards;
+}
+.moveOnSubmit {
+    top: 5%;
+    animation: fade 1s ease;
+    animation-fill-mode: forwards;
+   
 }
 .searchCountry::placeholder {
     color: rgba(255, 255, 255, 0.8);
@@ -30,8 +38,44 @@ html, body {
     white-space: nowrap;
 }
 
+.mainLogo {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+}
 
+.miniLogo {
+    top: 4.5%;
+    left: 27%;
+    width: 4%;
+    animation: fadeLogo 1s ease;
+}
 
 .flexContainer::-webkit-scrollbar {
     display: none;
 }
+
+@keyframes fade {
+    from {
+        top: 60%
+    }
+    to {
+        top: 5%
+    }
+  }
+
+  @keyframes fadeLogo {
+    from {
+        top: 35%;
+        left: 50%;
+        width: 30%;
+    }
+    to {
+        top: 4.5%;
+        left: 27%;
+        width: 4%;
+    }
+  }

@@ -6,25 +6,31 @@ const monthList = ["January","February","March","April","May","June","July","Aug
 
 function Weather(props) {
     var dateTime = new Date(props.dateTime);
-    //console.log(weekday[date.getDay()])
+    
     const date = dateTime.getDate();
     const month = monthList[dateTime.getMonth()]
+    const fadeInCard = {
+        animationName: 'fadeInOpacity',
+        animationDelay: props.delay,
+        animationDuration: '1s',
+        animationFillMode: 'forwards',
+    }
 
     const myRef = useRef(null);
 
     const handleOnClick = () => {
         props.handleSetToggledItem(props.index);
-        myRef.current.scrollIntoView({'behavior': 'smooth', "inline": "start"});
+        myRef.current.scrollIntoView({'behavior': 'smooth', "inline": "center"});
     }
     
     if (props.toggleItem === props.index) {
         var focused = 'focused card';
     } else {
-        var focused = 'card'
+        focused = 'card'
     }
 
     return (
-        <div ref={myRef} className={focused} onClick={handleOnClick}>
+        <div ref={myRef} style={fadeInCard} className={focused} onClick={handleOnClick}>
             <WeatherIcon
                 conditions={props.conditions}
                 imgSize={64}
