@@ -23,11 +23,9 @@ function App() {
     axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${e.target.country.value}?unitGroup=metric&key=${REACT_APP_OWM_KEY}&contentType=json`)
       .then(res => {
         const data = res.data;
-        console.log(data.days)
         setWeatherData(data.days)
         setInputClass('searchCountry moveOnSubmit') //Apply animation to move search bar to top of page
         setLogoClass('mainLogo miniLogo') //Apply animation to move logo to top of page
-        setError(false) //Remove error (if present) 
       }).catch((error) => {
         // Error
         if (error.response) {
@@ -37,6 +35,7 @@ function App() {
             console.log(error.response.status);
             console.log(error.response.headers);
             setError(true) //Show input error
+            setTimeout(() => {setError(false)}, 5000);
         } else if (error.request) {
             //no response from server
             console.log(error.request);

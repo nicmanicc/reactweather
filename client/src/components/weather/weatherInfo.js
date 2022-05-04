@@ -3,13 +3,13 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContai
 
 function WeatherInfo(props) {
 
-    let array = props.hours.filter((i,j) => j % 3 === 0);
-    console.log(array)
+    let array = props.hours.filter((i,j) => j % 2 === 0);
 
     const CustomToolTip = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
           return (
             <div className="custom-tooltip">
+                <p className='label'>{label}</p>
                 <p>Temperature: {payload[0].value}&#8451;</p>
                 <p>Wind: {payload[1].value} km/h</p>
                 <p>Precipitation: {payload[2].value}%</p>

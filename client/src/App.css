@@ -83,3 +83,36 @@ to {
     width: 4%;
 }
 }
+@media only screen and (max-width: 600px) {
+    .mainLogo {
+        position: absolute;
+        width: 70%;
+        top: 40%;
+        left: 52%;
+    }
+    .flexContainer { 
+        margin: 28% auto 0;
+        
+    }
+    .miniLogo {
+        top: 4.5%;
+        left: 11%;
+        width: 15%;
+        animation: fadeLogo 1s ease;
+    }
+    .searchCountry {
+        width: 60%;
+    }
+    @keyframes fadeLogo {
+        from {
+            width: 70%;
+            top: 40%;
+            left: 52%;
+        }
+        to {
+            top: 4.5%;
+            left: 11%;
+            width: 15%;
+        }
+    }
+  }
