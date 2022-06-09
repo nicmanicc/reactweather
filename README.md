@@ -1,6 +1,5 @@
 # ABOUT THIS PROJECT
   A weather app created using react. Shows weather data for the next 14 days with a graph detailing the temperature, wind speed, and precipitation probability. <br/>
-  This project was created using ReactJS
 ## LIVE PREVIEW 
   https://nicmanicc.github.io/reactweather/
 ## INSTALLATION
